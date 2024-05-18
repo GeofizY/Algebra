@@ -1,5 +1,10 @@
 public class FastBinaryOperation<T> {
-    public T getBaseInExponent(T base, int exponent, Monoid<T> monoid){
+    private final Monoid<T> monoid;
+
+    public FastBinaryOperation(Monoid<T> monoid) {
+        this.monoid = monoid;
+    }
+    public T getBaseInExponent(T base, int exponent){
         T result = monoid.getNEl();
         T mult = base;
         if (exponent == 0) return result;
