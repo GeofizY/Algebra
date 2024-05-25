@@ -14,7 +14,7 @@ public class RingBase<T> implements Ring<T> {
     }
 
     @Override
-    public T getMultiply(T x, T y) {
+    public T multiply(T x, T y) {
         return monoidMultiply.binOperation(x, y);
     }
 
@@ -24,7 +24,7 @@ public class RingBase<T> implements Ring<T> {
     }
 
     @Override
-    public T getSum(T x, T y) {
+    public T sum(T x, T y) {
         return groupSum.binOperation(x, y);
     }
 
