@@ -5,7 +5,7 @@ public class GroupSum implements Group<Integer> {
     }
 
     @Override
-    public Integer getBinOperation(Integer x, Integer y) {
+    public Integer binOperation(Integer x, Integer y) {
         return x + y;
     }
 
