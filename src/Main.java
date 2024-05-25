@@ -26,5 +26,9 @@ public class Main {
         GroupSum takeGroupSum = new GroupSum();
         PrefixSum prefixSum = new PrefixSum(arrForSum, takeGroupSum);
         System.out.println("Prefix sum query [1, 4]: " + prefixSum.query(1, 4));
+
+        // Кольцо над логическими значениями
+        Ring<Boolean> ringBool = new RingBase<>(new MonoidBool(), new GroupBool());
+        System.out.println("|||||||||||||||||| " + ringBool.getSum(false, false));
     }
 }
