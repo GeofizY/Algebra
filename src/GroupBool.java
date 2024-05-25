@@ -4,7 +4,7 @@ public class GroupBool implements Group<Boolean> {
         return false; // Нейтральный элемент
     }
     @Override
-    public Boolean getBinOperation(Boolean x, Boolean y) {
+    public Boolean binOperation(Boolean x, Boolean y) {
         return x || y; // Логическая операция +
     }
     @Override

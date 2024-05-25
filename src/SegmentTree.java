@@ -14,7 +14,7 @@ public class SegmentTree<T> {
     private void buildTree(T[] array) {
         System.arraycopy(array, 0, tree, size, size);
         for (int i = size - 1; i > 0; i--) {
-            tree[i] = monoid.getBinOperation(tree[i * 2], tree[i * 2 + 1]);
+            tree[i] = monoid.binOperation(tree[i * 2], tree[i * 2 + 1]);
         }
     }
 
@@ -24,10 +24,10 @@ public class SegmentTree<T> {
         right += size + 1;
         while (left < right) {
             if ((left & 1) == 1) {
-                result = monoid.getBinOperation(result, (T) tree[left++]);
+                result = monoid.binOperation(result, (T) tree[left++]);
             }
             if ((right & 1) == 1) {
-                result = monoid.getBinOperation(result, (T) tree[--right]);
+                result = monoid.binOperation(result, (T) tree[--right]);
             }
             left /= 2;
             right /= 2;

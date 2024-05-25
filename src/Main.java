@@ -1,3 +1,4 @@
+import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
@@ -29,6 +30,8 @@ public class Main {
 
         // Кольцо над логическими значениями
         Ring<Boolean> ringBool = new RingBase<>(new MonoidBool(), new GroupBool());
-        System.out.println("|||||||||||||||||| " + ringBool.getSum(false, false));
+        System.out.println("Test boolean ring" + ringBool.getSum(false, false));
+
+
     }
 }

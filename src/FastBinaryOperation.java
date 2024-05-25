@@ -10,8 +10,8 @@ public class FastBinaryOperation<T> {
         if (exponent == 0) return result;
         while (exponent != 0) {
             if (exponent % 2 == 1)
-                result = monoid.getBinOperation(result, mult);
-            mult = monoid.getBinOperation(mult, mult);
+                result = monoid.binOperation(result, mult);
+            mult = monoid.binOperation(mult, mult);
             exponent /= 2;
         }
         return result;

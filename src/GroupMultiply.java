@@ -5,7 +5,7 @@ public class GroupMultiply implements Group<Double> {
     }
 
     @Override
-    public Double getBinOperation(Double x, Double y) {
+    public Double binOperation(Double x, Double y) {
         return x * y;
     }
 

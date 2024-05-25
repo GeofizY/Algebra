@@ -11,11 +11,11 @@ public class PrefixSum {
     private void buildPrefixSums(int[] array) {
         prefixSums[0] = group.getNEl();
         for (int i = 0; i < array.length; i++) {
-            prefixSums[i + 1] = group.getBinOperation(prefixSums[i], array[i]);
+            prefixSums[i + 1] = group.binOperation(prefixSums[i], array[i]);
         }
     }
 
     public int query(int left, int right) {
-        return group.getBinOperation(prefixSums[right+1], group.inverse(prefixSums[left]));
+        return group.binOperation(prefixSums[right+1], group.inverse(prefixSums[left]));
     }
 }
