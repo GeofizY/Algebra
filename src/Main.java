@@ -63,7 +63,7 @@ public class Main {
 
         // Кольцо над логическими значениями
         Ring<Boolean> ringBool = new RingBase<>(new MonoidBool(), new GroupBool());
-        System.out.println("Test boolean ring " + ringBool.sum(false, false));
+        System.out.println("Test boolean ring: " + ringBool.sum(false, false));
 
         // Пример использования матриц над кольцом целых чисел
         Ring<Integer> ringInt = new RingBase<>(new MonoidMultiply(), new GroupSum());
@@ -99,8 +99,7 @@ public class Main {
             System.out.println();
         }
 
-
-
+        // Пример полинома над целыми числами
         List<Integer> polyCoefficients1 = List.of(1, 2, 3);
         List<Integer> polyCoefficients2 = List.of(4, 5);
 
@@ -121,7 +120,7 @@ public class Main {
         }
 
         // Пример использования полиномов над матрицами
-        MatrixRing<Integer> matrixRing = new MatrixRing<>(ringInt, 2);
+        RingMatrix<Integer> matrixRing = new RingMatrix<>(ringInt, 2);
 
         Matrix<Integer> matrix1 = new Matrix<>(matrixRing, arrForMatrixInt1);
         Matrix<Integer> matrix2 = new Matrix<>(matrixRing, arrForMatrixInt2);

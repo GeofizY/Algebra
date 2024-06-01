@@ -1,8 +1,8 @@
-class MatrixRing<T> implements Ring<Matrix<T>> {
+class RingMatrix<T> implements Ring<Matrix<T>> {
     private final Ring<T> elementRing;
     private int size;
 
-    public MatrixRing(Ring<T> ring, int size) {
+    public RingMatrix(Ring<T> ring, int size) {
         this.elementRing = ring;
         this.size = size;
     }

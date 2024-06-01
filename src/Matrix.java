@@ -1,13 +1,13 @@
 public class Matrix<T> {
-    protected final MatrixRing<T> ring;
+    protected final RingMatrix<T> ring;
     protected final T[][] data;
 
-    public Matrix(MatrixRing<T> ring, T[][] data) {
+    public Matrix(RingMatrix<T> ring, T[][] data) {
         this.ring = ring;
         this.data = data;
     }
     public Matrix(Ring<T> ring, T[][] data) {
-        this.ring = new MatrixRing<T>(ring, data.length);
+        this.ring = new RingMatrix<T>(ring, data.length);
         this.data = data;
     }
 
