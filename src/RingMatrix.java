@@ -42,7 +42,7 @@ class MatrixRing<T> implements Ring<Matrix<T>> {
 
     @Override
     public Matrix<T> sum(Matrix<T> x, Matrix<T> y) {
-        return x.add(y);
+        return x.sum(y);
     }
 
     @Override

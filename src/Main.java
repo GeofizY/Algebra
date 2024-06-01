@@ -80,10 +80,10 @@ public class Main {
         Matrix<Integer> matrixInt1 = new Matrix<>(ringInt, arrForMatrixInt1);
         Matrix<Integer> matrixInt2 = new Matrix<>(ringInt, arrForMatrixInt2);
 
-        Matrix<Integer> matSum = matrixInt1.add(matrixInt2);
+        Matrix<Integer> matSum = matrixInt1.sum(matrixInt2);
         Matrix<Integer> matMul = matrixInt1.multiply(matrixInt2);
 
-        System.out.println("Matrix Sum:");
+        System.out.println("\nMatrix Sum:");
         for (int i = 0; i < matSum.getRowLength(); i++) {
             for (int j = 0; j < matSum.getColumnLength(); j++) {
                 System.out.print(matSum.getElement(i, j) + " ");
@@ -99,17 +99,26 @@ public class Main {
             System.out.println();
         }
 
-        // Пример использования полиномов над кольцом целых чисел
-//        List<Integer> coefficientsInt1 = List.of(1, 2, 3);
-//        List<Integer> coefficientsInt2 = List.of(4, 5);
-//
-//        Polynomial<Integer> polyInt1 = new Polynomial<>(ringInt, Arrays.asList(1,2,3,4) );
-//        Polynomial<Integer> polyInt2 = new Polynomial<>(ringInt, Arrays.asList(5,6,7,8) );
-//
-//        // Сложение полиномов
-//        Polynomial<Integer> sumPolyInt = polyInt1.sum(polyInt2);
-//        System.out.println("Sum Polynomial:");
-//        printPolynomial(sumPolyInt);
+
+
+        List<Integer> polyCoefficients1 = List.of(1, 2, 3);
+        List<Integer> polyCoefficients2 = List.of(4, 5);
+
+        Polynomial<Integer> poly1 = new Polynomial<>(ringInt, polyCoefficients1);
+        Polynomial<Integer> poly2 = new Polynomial<>(ringInt, polyCoefficients2);
+
+        Polynomial<Integer> polySum = poly1.sum(poly2);
+        Polynomial<Integer> polyProduct = poly1.multiply(poly2);
+
+        System.out.println("\nPolynomial Sum:");
+        for (int i = 0; i < polySum.coefficients.size(); i++) {
+            System.out.println("Coefficient of x^" + i + ": " + polySum.getCoefficient(i));
+        }
+
+        System.out.println("\nPolynomial Product:");
+        for (int i = 0; i < polyProduct.coefficients.size(); i++) {
+            System.out.println("Coefficient of x^" + i + ": " + polyProduct.getCoefficient(i));
+        }
 
         // Пример использования полиномов над матрицами
         MatrixRing<Integer> matrixRing = new MatrixRing<>(ringInt, 2);
@@ -118,17 +127,17 @@ public class Main {
         Matrix<Integer> matrix2 = new Matrix<>(matrixRing, arrForMatrixInt2);
 
         // Полиномы с коэффициентами из матриц
-        Polynomial<Matrix<Integer>> poly1 = new Polynomial<>(matrixRing, Arrays.asList(matrix1, matrix2));
-        Polynomial<Matrix<Integer>> poly2 = new Polynomial<>(matrixRing, Arrays.asList(matrix2, matrix1));
+        Polynomial<Matrix<Integer>> polyMatrix1 = new Polynomial<>(matrixRing, Arrays.asList(matrix1, matrix2));
+        Polynomial<Matrix<Integer>> polyMatrix2 = new Polynomial<>(matrixRing, Arrays.asList(matrix2, matrix1));
 
         // Сложение полиномов
-        Polynomial<Matrix<Integer>> sumPoly = poly1.sum(poly2);
-        System.out.println("Sum Polynomial:");
+        Polynomial<Matrix<Integer>> sumPoly = polyMatrix1.sum(polyMatrix2);
+        System.out.println("\nSum Polynomial:");
         printPolynomial(sumPoly);
 
         // Умножение полиномов
-        Polynomial<Matrix<Integer>> productPoly = poly1.multiply(poly2);
-        System.out.println("Product Polynomial:");
+        Polynomial<Matrix<Integer>> productPoly = polyMatrix1.multiply(polyMatrix2);
+        System.out.println("Multiply Polynomial:");
         printPolynomial(productPoly);
 
     }

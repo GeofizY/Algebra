@@ -23,7 +23,7 @@ public class Matrix<T> {
         return data[row][col];
     }
 
-    public Matrix<T> add(Matrix<T> other) {
+    public Matrix<T> sum(Matrix<T> other) {
         int rows = this.getRowLength();
         int cols = this.getColumnLength();
 
