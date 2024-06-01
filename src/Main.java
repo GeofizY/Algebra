@@ -1,6 +1,23 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class Main {
+    private static void printPolynomial(Polynomial<?> polynomial) {
+        for (int i = polynomial.coefficients.size() - 1; i >= 0; i--) {
+            System.out.print("Coefficient for x^" + i + ":\n");
+            printMatrix((Matrix<?>) polynomial.coefficients.get(i));
+        }
+    }
+
+    private static void printMatrix(Matrix<?> matrix) {
+        for (int i = 0; i < matrix.getRowLength(); i++) {
+            for (int j = 0; j < matrix.getColumnLength(); j++) {
+                System.out.print(matrix.getElement(i, j) + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 
     public static void main(String[] args) {
 
@@ -64,7 +81,7 @@ public class Main {
         Matrix<Integer> matrixInt2 = new Matrix<>(ringInt, arrForMatrixInt2);
 
         Matrix<Integer> matSum = matrixInt1.add(matrixInt2);
-        Matrix<Integer> matProduct = matrixInt1.multiply(matrixInt2);
+        Matrix<Integer> matMul = matrixInt1.multiply(matrixInt2);
 
         System.out.println("Matrix Sum:");
         for (int i = 0; i < matSum.getRowLength(); i++) {
@@ -75,35 +92,45 @@ public class Main {
         }
 
         System.out.println("Matrix Product:");
-        for (int i = 0; i < matProduct.getRowLength(); i++) {
-            for (int j = 0; j < matProduct.getColumnLength(); j++) {
-                System.out.print(matProduct.getElement(i, j) + " ");
+        for (int i = 0; i < matMul.getRowLength(); i++) {
+            for (int j = 0; j < matMul.getColumnLength(); j++) {
+                System.out.print(matMul.getElement(i, j) + " ");
             }
             System.out.println();
         }
 
+        // Пример использования полиномов над кольцом целых чисел
+//        List<Integer> coefficientsInt1 = List.of(1, 2, 3);
+//        List<Integer> coefficientsInt2 = List.of(4, 5);
 //
-//        // Пример использования полинома над кольцом целых чисел
-//        Ring<Integer> integerRing = new RingBase<>(new MonoidMultiply(), new GroupSum());
+//        Polynomial<Integer> polyInt1 = new Polynomial<>(ringInt, Arrays.asList(1,2,3,4) );
+//        Polynomial<Integer> polyInt2 = new Polynomial<>(ringInt, Arrays.asList(5,6,7,8) );
 //
-//        List<Integer> polyCoefficients1 = List.of(1, 2, 3); // 1 + 2x + 3x^2
-//        List<Integer> polyCoefficients2 = List.of(4, 5); // 4 + 5x
-//
-//        Polynomial<Integer> poly1 = new Polynomial<>(polyCoefficients1, integerRing);
-//        Polynomial<Integer> poly2 = new Polynomial<>(polyCoefficients2, integerRing);
-//
-//        Polynomial<Integer> polySum = poly1.add(poly2);
-//        Polynomial<Integer> polyProduct = poly1.multiply(poly2);
-//
-//        System.out.println("\nPolynomial Sum:");
-//        for (int i = 0; i < polySum.coefficients.size(); i++) {
-//            System.out.println("Coefficient of x^" + i + ": " + polySum.getCoefficient(i));
-//        }
-//
-//        System.out.println("\nPolynomial Product:");
-//        for (int i = 0; i < polyProduct.coefficients.size(); i++) {
-//            System.out.println("Coefficient of x^" + i + ": " + polyProduct.getCoefficient(i));
-//        }
+//        // Сложение полиномов
+//        Polynomial<Integer> sumPolyInt = polyInt1.sum(polyInt2);
+//        System.out.println("Sum Polynomial:");
+//        printPolynomial(sumPolyInt);
+
+        // Пример использования полиномов над матрицами
+        MatrixRing<Integer> matrixRing = new MatrixRing<>(ringInt, 2);
+
+        Matrix<Integer> matrix1 = new Matrix<>(matrixRing, arrForMatrixInt1);
+        Matrix<Integer> matrix2 = new Matrix<>(matrixRing, arrForMatrixInt2);
+
+        // Полиномы с коэффициентами из матриц
+        Polynomial<Matrix<Integer>> poly1 = new Polynomial<>(matrixRing, Arrays.asList(matrix1, matrix2));
+        Polynomial<Matrix<Integer>> poly2 = new Polynomial<>(matrixRing, Arrays.asList(matrix2, matrix1));
+
+        // Сложение полиномов
+        Polynomial<Matrix<Integer>> sumPoly = poly1.sum(poly2);
+        System.out.println("Sum Polynomial:");
+        printPolynomial(sumPoly);
+
+        // Умножение полиномов
+        Polynomial<Matrix<Integer>> productPoly = poly1.multiply(poly2);
+        System.out.println("Product Polynomial:");
+        printPolynomial(productPoly);
 
     }
 }
+

@@ -1,9 +1,13 @@
 public class Matrix<T> {
-    private final Ring<T> ring;
-    private final T[][] data;
+    protected final MatrixRing<T> ring;
+    protected final T[][] data;
 
-    public Matrix(Ring<T> ring, T[][] data) {
+    public Matrix(MatrixRing<T> ring, T[][] data) {
         this.ring = ring;
+        this.data = data;
+    }
+    public Matrix(Ring<T> ring, T[][] data) {
+        this.ring = new MatrixRing<T>(ring, data.length);
         this.data = data;
     }
 
@@ -31,8 +35,7 @@ public class Matrix<T> {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                result[i][j] = ring.getNElOne();
-                result[i][j] = ring.sum(this.getElement(i, j), other.getElement(i, j));
+                result[i][j] = ring.getElementRing().sum(this.getElement(i, j), other.getElement(i, j));
             }
         }
 
@@ -52,9 +55,9 @@ public class Matrix<T> {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < otherCols; j++) {
-                T sum = ring.getNElZero();
+                T sum = ring.getElementRing().getNElZero();
                 for (int k = 0; k < cols; k++) {
-                    sum = ring.sum(sum, ring.multiply(this.getElement(i, k), other.getElement(k, j)));
+                    sum = ring.getElementRing().sum(sum, ring.getElementRing().multiply(this.getElement(i, k), other.getElement(k, j)));
                 }
                 result[i][j] = sum;
             }
